@@ -111,7 +111,7 @@ class Graph:
             node2 = int(input(f"{HowManyDel}. Podaj drugi: "))
 
 
-array = Graph.CreateGraph(self=None, nodeAmount=5, maxAmountOfConnections=10)cd
+array = Graph.CreateGraph(self=None, nodeAmount=5, maxAmountOfConnections=10)
 Graph.Visualize(self=None, array=array)
 node1 = int(input("podaj pierwszy: "))
 node2 = int(input("podaj drugi: "))
