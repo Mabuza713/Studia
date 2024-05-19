@@ -52,6 +52,6 @@ class Pendulum:
 
 
 # print(Pendulum.CreatingArrayOfValues(10,0.01, "RozwiazaniePrzySympy"))
-print(Pendulum.SolveWithODEINT(1, constants.pi/4, 10, 1))
+# print(Pendulum.SolveWithODEINT(1, constants.pi/4, 10, 1))
 
 
