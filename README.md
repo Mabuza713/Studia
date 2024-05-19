@@ -1,2 +1,0 @@
-# Studia
-rzeczy na studia
