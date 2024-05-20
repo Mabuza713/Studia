@@ -29,5 +29,6 @@ roz <- xsm/nm - xsk/nk
 roz <- sort(roz)
 
 (dg<-roz[od+1])
-
 (gg <-roz[ns-od])
+
+
