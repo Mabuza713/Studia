@@ -64,17 +64,6 @@ class Pendulum:
         axs[0].set_ylabel("Angle");axs[1].set_ylabel("Angle")
 
         plt.show()
-    # def ErrorPlots(stringLength, initialTilt, T, dt, name = ""):
-    #     OdeIntArr = Pendulum.SolveWithODEINT(stringLength, initialTilt, T, dt)
-    #     SympyArr = Pendulum.CreatingArrayOfValues(T,dt ,name, stringLength, initialTilt)
-    #
-    #     meanOde = 0
-    #     for i in range(len(OdeIntArr)):
-    #         meanOde += abs(OdeIntArr[i] - SympyArr[i])
-    #     print(meanOde/len(OdeIntArr))
-    #
-    #     PowError = np.mean((np.array(OdeIntArr) - np.array(SympyArr))**2)
-    #     return [dt, meanOde/len(OdeIntArr), PowError]
 
     def ErrorPlots(stringLength, initialTilt, T, dt_values, name=""):
         mean_errors = []
@@ -105,8 +94,8 @@ class Pendulum:
 print(constants.g)
 # print(Pendulum.CreatingArrayOfValues(10,0.01, "RozwiazaniePrzySympy"))
 # print(Pendulum.SolveWithODEINT(1, constants.pi/4, 10, 0.01))
-print(Pendulum.ErrorPlots(1, constants.pi/4, 10, dt_values = [0.1, 0.05, 0.01, 0.005, 0.001]))
+# print(Pendulum.ErrorPlots(1, constants.pi/4, 10, dt_values = [0.01,0.05,0.1,0.5,1]))
 
-Pendulum.plotingTwo(1, constants.pi/4, 10, 0.01)
+Pendulum.plotingTwo(1, constants.pi/4, 10, 0.1)
 
 print(constants.g)
