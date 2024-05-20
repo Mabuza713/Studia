@@ -18,6 +18,14 @@ p0 <- 1/k * rep(1, times = k)
 chisq.test(m,p = p0 )
 
 
+#zdanie 2
+
+m <- matrix(c(200,300,150,350),nrow = 2 ,byrow = TRUE)
+chisq.test(m)
+
+#test pearsona
+25 ^2 * (1/175 + 1/325) * 2
+
 
 
 
