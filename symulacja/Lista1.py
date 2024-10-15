@@ -73,10 +73,8 @@ class DiskThrow:
 
         for i in range(0, self.amount_of_thorws):
             sd_temp = (self.stats[i] - mean)**2
-        if self.amount_of_thorws < 30:
-            sd = sqrt(sd_temp / (len(self.stats) - 1))
-        else:
-            sd = sqrt(sd_temp / len(self.stats))
+
+        sd = sqrt(sd_temp / (len(self.stats) -1))
         if verbose:
             print(f"mean: {mean}")
             print(f"sd: {sd}")
@@ -106,7 +104,7 @@ class DiskThrow:
 
 
     def TestIfUnif(self):
-        sample_data = np.full(shape = (1, 10), fill_value = self.amount_of_thorws / 10)
+        sample_data = np.full(shape = (1, 11), fill_value = self.amount_of_thorws / 11)
         sample_data = sample_data[0].tolist()
 
         hist_of_our_data = [self.stats.count(x) for x in range(0,11)]
