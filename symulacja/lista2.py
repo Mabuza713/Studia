@@ -1,11 +1,9 @@
 import random
-
 import matplotlib.pyplot as plt
 from math import sqrt
 import numpy as np
-
 import scipy.stats as stats
-
+random.seed(3)
 
 
 class Object:
@@ -16,21 +14,23 @@ class Object:
     def Random_sim(self):
         return random.uniform(-1,1)
 
-
     def Simulate(self):
-        for i in range(0, self.how_much):
+        for _ in range(0, self.how_much):
             self.stats.append(self.Random_sim())
 
-    def CalculateMeanAndSD(self, verbose=True):
+    # Statistics calculations
+    def CalculateMeanAndSD(self, verbose=False):
         mean_temp = 0
         sd_temp = 0
+        #print(f"sd {np.std(self.stats)}")
+        #print(f"mean {np.mean(self.stats)}")
         for i in range(0, self.how_much):
             mean_temp += self.stats[i]
 
         mean = mean_temp / len(self.stats)
 
         for i in range(0, self.how_much):
-            sd_temp = (self.stats[i] - mean) ** 2
+            sd_temp += (self.stats[i] - mean) ** 2
 
         sd = sqrt(sd_temp / (len(self.stats) - 1))
         if verbose:
@@ -42,7 +42,7 @@ class Object:
     def CalculateMedian(self):
         lista = self.stats
         lista.sort()
-        print(lista)
+        print(f"median {np.median(lista)}")
         if (self.how_much % 2 == 0):
             return ((lista[self.how_much // 2]) + (lista[self.how_much // 2 - 1]))/2
         else:
@@ -50,62 +50,110 @@ class Object:
 
     def CalculateVariance(self):
         mean, sd = self.CalculateMeanAndSD()
+        print(f"variance {np.var(self.stats)}")
         return sd*sd
 
-    def CalculateSkosnosc(self):
+    def CalculateSkewness(self):
         mean, sd = self.CalculateMeanAndSD()
-        skonsonc_temp = 0
+        skewness_temp = 0
         for i in range(0, self.how_much):
-            skonsonc_temp = (self.stats[i] - mean) ** 3
-        skosnosc = skonsonc_temp * self.how_much / (self.how_much - 1)/ (self.how_much - 2) / sd / sd / sd
+            skewness_temp += ((self.stats[i] - mean) / sd) ** 3
+        skewness = skewness_temp * self.how_much / (self.how_much - 1) / (self.how_much - 2) 
+        print(stats.skew(self.stats, bias= True))
+        return skewness
 
-        return skosnosc
-
-    def CalculateKurtuoza(self):
-        pierwszy = self.how_much * (self.how_much + 1) / (self.how_much - 1) . (self.how_much - 2) / (self.how_much - 3)
-
+    def CalculateKurtosis(self):
+        first = self.how_much * (self.how_much + 1) / (self.how_much - 1) / (self.how_much - 2) / (self.how_much - 3)
         mean, sd = self.CalculateMeanAndSD()
 
         temp = 0
         for i in range(0, self.how_much):
-            temp += ((self.stats[i] - mean) / sd) * ((self.stats[i] - mean) / sd) * ((self.stats[i] - mean) / sd) * ((self.stats[i] - mean) / sd)
+            temp += ((self.stats[i] - mean) / sd) ** 4
 
-        dwa = 3 * (self.how_much - 1) * (self.how_much - 1) / (self.how_much - 2) / (self.how_much - 3)
-        return pierwszy * temp - dwa
+        second = 3 * (self.how_much - 1) * (self.how_much - 1) / (self.how_much - 2) / (self.how_much - 3)
+        
+        print(f"kurtoza {stats.kurtosis(self.stats)}" )
+        return first * temp - second
+
 
     def CalculateMode(self):
-        hist_of_our_data = [self.stats.count(x) for x in self.stats]
-        if (len(hist_of_our_data) == 1):
-            return "no mode"
+        if (self.how_much == len(set(self.stats))):
+            return "No mode"
         else:
-            max_amount =0
-            mode = 0
-            for i in range(0, self.how_much):
-                if (self.stats.count(self.stats[i]) > max_amount):
-                    max_amount = self.stats.count(self.stats[i])
-                    mode = self.stats[i]
-        return mode
+            frequency = {}
+            for value in self.stats:
+                if value in frequency:
+                    frequency[value] += 1
+                else:
+                    frequency[value] = 1
+            
+            max_frequency = max(frequency.values())
+            modes = [key for key, value in frequency.items() if value == max_frequency]
+            
+            if len(modes) == 1:
+                return modes[0]
+            else:
+                return modes
+        
+    def CalculatePercentile(self, percentile):
+        lista = self.stats
+        lista.sort()
 
-
+        index = (self.how_much - 1) * percentile / 100
+        if (index - int(index) == 0):
+            return lista[int(index)]
+        
+        lower = int(np.floor(index))
+        upper = int(np.ceil(index))
+        interpolation = index - lower
+        
+        return (1- interpolation) * lista[lower] + interpolation * lista[upper]
+        
+        
 
     def CheckIfRelevant(self, critical_value):
         mean, sd = self.CalculateMeanAndSD(False)
         value = sqrt(self.how_much) * mean / sd
-
-        if (value > critical_value):
-            print("Rejecting null hipo")
+        
+        if (abs(value) > critical_value):
+            print(f"for {self.how_much} elements we are rejecting null hipo")
         else:
-            print("NOT rejecting null hip")
+            print(f"for {self.how_much} elements we are NOT rejecting null hip")
 
 
 
     def histogram_discreet(self):
+        fig, axs = plt.subplots(1,2)
+        axs = axs.flatten()
+        
+        # Creating density graph
+        denisty_less_x = np.linspace (-1.5, -1, 100000)
+        denisty_more_x = np.linspace (1, 1.5, 100000)
+        density_less_y = np.linspace(0, 0, 100000)
+        density_more_y = np.linspace(0, 0, 100000)
+        
+        
+        density_x = np.linspace(-1, 1, 100000)
+        denisty_y = np.linspace(1,1,100000)
+        
+        axs[1].plot(denisty_less_x, density_less_y,color = "blue")
+        axs[1].plot(density_x, denisty_y, color = "blue")
+        axs[1].plot(denisty_more_x, density_more_y, color = "blue")
+        axs[1].grid(True)
+        axs[1].set_ylim(0, 1.5)
+        axs[1].set_xlabel("value")
+        axs[1].set_ylabel("frequency")
+        axs[1].set_title("Density function")
+
+        # Plotting histogram
         a = np.hstack(self.stats)
-        plt.title(f"amount of throws:{self.how_much}")
-        plt.hist(a, align="left", edgecolor="black")
-        plt.xlabel("points")
-        plt.ylabel("frequency")
+        axs[0].set_title(f"amount of elements:{self.how_much}")
+        axs[0].hist(a, align="left", edgecolor="black")
+        axs[0].set_xlabel("value")
+        axs[0].set_ylabel("frequency")
+        axs[0].set_xlim(-2,2)
         plt.show()
+        
 
 
 object_15 = Object(15)
@@ -113,9 +161,35 @@ object_120 = Object(120)
 
 object_15.Simulate()
 object_120.Simulate()
-
+print("mean, sd")
+print(object_15.CalculateMeanAndSD())
+print(object_120.CalculateMeanAndSD())
+print()
+print("kurtozja")
+print(object_15.CalculateKurtosis())
+print(object_120.CalculateKurtosis())
+print()
+print("Median")
+print(object_15.CalculateMedian())
+print(object_120.CalculateMedian())
+print()
+print("skosnosc")
+print(object_15.CalculateSkewness())
+print(object_120.CalculateSkewness())
+print()
+print("mode")
+print(object_15.CalculateMode())
+print(object_120.CalculateMode())
+print()
+print("variance")
+print(object_15.CalculateVariance())
+print(object_120.CalculateVariance())
 
 object_15.histogram_discreet()
 object_120.histogram_discreet()
+
+
+object_15.CheckIfRelevant(2.144)
+object_120.CheckIfRelevant(1.96)
 
 
