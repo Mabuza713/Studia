@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from math import sqrt
 import numpy as np
 import scipy.stats as stats
-random.seed(3)
+np.random.seed(5)
 
 
 class Object:
@@ -12,7 +12,7 @@ class Object:
         self.stats = []
 
     def Random_sim(self):
-        return random.uniform(-1,1)
+        return np.random.normal(0.5,0.5)
 
     def Simulate(self):
         for _ in range(0, self.how_much):
@@ -113,97 +113,130 @@ class Object:
 
     def CheckIfRelevant(self, critical_value):
         mean, sd = self.CalculateMeanAndSD(False)
-        value = sqrt(self.how_much) * mean / sd
+        value = sqrt(self.how_much) * (mean - 0.5) / sd
         
         if (abs(value) > critical_value):
             print(f"for {self.how_much} elements we are rejecting null hipo")
         else:
             print(f"for {self.how_much} elements we are NOT rejecting null hip")
 
-
+    def ShapiroWilk(self):
+        list_sorted = sorted(self.stats)
+        W, p = stats.shapiro(list_sorted)
+        print(f"wartość testu shapiro: {W} z p-value: {p}")
+        return W, p
+        
+    def qq_plot(self):
+        sorted_list = sorted(self.stats)
+        stats.probplot(sorted_list, dist="norm", plot=plt)
+        plt.title(f"qq-plot for {self.how_much} elements")
+        plt.show()
+    
+    def boxplot(self):
+        sorted_list = sorted(self.stats)
+        plt.boxplot(sorted_list)
+        plt.title(f"boxplot for {self.how_much} elements")
+        plt.show()
 
     def histogram_discreet(self):
         fig, axs = plt.subplots(1,2)
         axs = axs.flatten()
         
         # Creating density graph
-        denisty_less_x = np.linspace (-1.5, -1, 100000)
-        denisty_more_x = np.linspace (1, 1.5, 100000)
-        density_less_y = np.linspace(0, 0, 100000)
-        density_more_y = np.linspace(0, 0, 100000)
+        density_x = np.linspace(-2, 3, 100000)
+        denisty_y = stats.norm.pdf(density_x, 0.5,0.5)
         
-        
-        density_x = np.linspace(-1, 1, 100000)
-        denisty_y = np.linspace(1,1,100000)
-        
-        axs[1].plot(denisty_less_x, density_less_y,color = "blue")
+
         axs[1].plot(density_x, denisty_y, color = "blue")
-        axs[1].plot(denisty_more_x, density_more_y, color = "blue")
         axs[1].grid(True)
         axs[1].set_ylim(0, 1.5)
         axs[1].set_xlabel("value")
         axs[1].set_ylabel("frequency")
         axs[1].set_title("Density function")
-
+        axs[1].set_xlim(-2,3)
         # Plotting histogram
         a = np.hstack(self.stats)
         axs[0].set_title(f"amount of elements:{self.how_much}")
         axs[0].hist(a, align="left", edgecolor="black")
         axs[0].set_xlabel("value")
         axs[0].set_ylabel("frequency")
-        axs[0].set_xlim(-2,2)
+        axs[0].set_xlim(-2,3)
         plt.show()
         
     
 
-#object_15 = Object(15)
-#object_120 = Object(120)
-#
-#object_15.Simulate()
-#object_120.Simulate()
-#print("mean, sd")
-#print(object_15.CalculateMeanAndSD())
-#print(object_120.CalculateMeanAndSD())
-#print()
-#print("kurtozja")
-#print(object_15.CalculateKurtosis())
-#print(object_120.CalculateKurtosis())
-#print()
-#print("Median")
-#print(object_15.CalculateMedian())
-#print(object_120.CalculateMedian())
-#print()
-#print("skosnosc")
-#print(object_15.CalculateSkewness())
-#print(object_120.CalculateSkewness())
-#print()
-#print("mode")
-#print(object_15.CalculateMode())
-#print(object_120.CalculateMode())
-#print()
-#print("variance")
-#print(object_15.CalculateVariance())
-#print(object_120.CalculateVariance())
+object_15 = Object(15)
+object_120 = Object(120)
 
-#object_15.histogram_discreet()
-#object_120.histogram_discreet()
-
-
-#średnich_5000 = []
-#for _ in range(int(50000/2)):
-#    nowy_obj = Object(1000)
-#    nowy_obj.Simulate()
-#    
-#    srednia, sd = nowy_obj.CalculateMeanAndSD()
-#    średnich_5000.append(srednia)
-#
-#
-#
-#plt.hist(średnich_5000,bins= 1000)
+#res = []
+#x_ax = []
+#for i in range(10, 12000):
+#    obj = Object(i)
+#    obj.Simulate()
+#    obj_kurt = obj.CalculateKurtosis()
+#    res.append(obj_kurt)
+#    x_ax.append(i)
+#plt.plot(x_ax, res)
 #plt.show()
 
 
-#object_15.CheckIfRelevant(2.144)
-#object_120.CheckIfRelevant(1.96)
+
+object_15.Simulate()
+object_120.Simulate()
+
+    
+object_15.ShapiroWilk()
+object_120.ShapiroWilk()
+
+object_15.qq_plot()
+object_120.qq_plot()
+
+object_15.boxplot()
+object_120.boxplot()
+
+
+
+print("mean, sd")
+print(object_15.CalculateMeanAndSD())
+print(object_120.CalculateMeanAndSD())
+print()
+print("kurtozja")
+print(object_15.CalculateKurtosis())
+print(object_120.CalculateKurtosis())
+print()
+print("Median")
+print(object_15.CalculateMedian())
+print(object_120.CalculateMedian())
+print()
+print("skosnosc")
+print(object_15.CalculateSkewness())
+print(object_120.CalculateSkewness())
+print()
+print("mode")
+print(object_15.CalculateMode())
+print(object_120.CalculateMode())
+print()
+print("variance")
+print(object_15.CalculateVariance())
+print(object_120.CalculateVariance())
+object_15.histogram_discreet()
+object_120.histogram_discreet()
+
+średnich_5000 = []
+for _ in range(int(50000/2)):
+    nowy_obj = Object(1000)
+    nowy_obj.Simulate()
+    
+    srednia, sd = nowy_obj.CalculateMeanAndSD()
+    średnich_5000.append(srednia)
+
+
+
+plt.hist(średnich_5000,bins= 1000)
+plt.show()
+
+
+object_15.CheckIfRelevant(2.144)
+object_120.CheckIfRelevant(1.96)
 
 
