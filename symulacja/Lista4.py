@@ -6,6 +6,8 @@ import scipy.stats as stats
 import time
 random.seed(3)
 
+from lista2 import Object as Object_lista2
+
 
 class Object:
     def __init__(self,how_much,a, b, m, seed):
@@ -177,137 +179,162 @@ class Object:
         axs[0].set_xlabel("value")
         axs[0].set_ylabel("frequency")
         axs[0].set_xlim(-2,2)
+        
+        
+        
+        
         plt.show()
         
     
-
-object_15 = Object(15, 1103515245, 12345, 2**31, 2)
-object_120 = Object(120, 1103515245, 12345, 2**31, 2)
-
-object_15.Simulate()
-object_120.Simulate()
-print("mean, sd")
-print(object_15.CalculateMeanAndSD())
-print(object_120.CalculateMeanAndSD())
-print()
-print("kurtozja")
-print(object_15.CalculateKurtosis())
-print(object_120.CalculateKurtosis())
-print()
-print("Median")
-print(object_15.CalculateMedian())
-print(object_120.CalculateMedian())
-print()
-print("skosnosc")
-print(object_15.CalculateSkewness())
-print(object_120.CalculateSkewness())
-print()
-print("mode")
-print(object_15.CalculateMode())
-print(object_120.CalculateMode())
-print()
-print("variance")
-print(object_15.CalculateVariance())
-print(object_120.CalculateVariance())
-object_15.histogram_discreet()
-object_120.histogram_discreet()
-
-
-
-object_15.CheckIfRelevant(2.144)
-object_120.CheckIfRelevant(1.96)
-
-
-def ShapiroWilk(amount_of_samples, amount_of_elemetns):
-    list_sorted = []
-    for _ in range(amount_of_samples):
-        time.sleep(1)
-        temp_obj = Object(amount_of_elemetns, 1103515245, 12345, 2**31, abs(int(time.perf_counter()) * 10000000000000000000))
-        temp_obj.Simulate()
-        mean, sd = temp_obj.CalculateMeanAndSD()
-        list_sorted.append(mean)
-    list_sorted = sorted(list_sorted)
-    W, p = stats.shapiro(list_sorted)
-    print(f"wartość testu shapiro: {W} z p-value: {p}")
-    return W, p
-#ShapiroWilk(250,120)
-
-list_sorted_mean = []
-list_sorted_sd = []
-list_sorted_kurtosis = []
-list_sorted_skweness = []
-list_sorted_variance = []
-
-def CreateMeanMean(amount_of_samples, amount_of_elemetns):
-    for _ in range(amount_of_samples):
-        time.sleep(1)
-        temp_obj = Object(amount_of_elemetns, 1103515245, 12345, 2**31, abs(int(time.perf_counter()) * 10000000000000000000))
-        temp_obj.Simulate()
-        
-        mean, sd = temp_obj.CalculateMeanAndSD()
-        kurtosis = temp_obj.CalculateKurtosis()
-        skewness = temp_obj.CalculateSkewness()
-        var = temp_obj.CalculateVariance()
-        
-        
-        
-        list_sorted_kurtosis.append(kurtosis)
-        list_sorted_skweness.append(skewness)
-        list_sorted_variance.append(var)
-        list_sorted_mean.append(mean)
-        list_sorted_sd.append(sd)
-    
-    list_sorted_mean.sort()
-    list_sorted_sd.sort()
-    list_sorted_kurtosis.sort()
-    list_sorted_skweness.sort()
-    list_sorted_variance.sort()
-    
-def CheckIfRelevant(lista, critical_value, stat_from_list_2):
-    mean = np.mean(lista)
-    sd = np.std(lista, ddof=1)
-    value = sqrt(len(lista)) * (mean - stat_from_list_2) / sd
-    
-    if (abs(value) > critical_value):
-        print(f"for {len(lista)} elements we are rejecting null hipo")
-    else:
-        print(f"for {len(lista)} elements we are NOT rejecting null hip")
-
-CreateMeanMean(100, 120)
-print()
-print()
-print()
-print()
-print()
-print()
-print("test for mean")
-CheckIfRelevant(list_sorted_mean,1.96, 0.06866020977708105)
-
-print("test for sd")
-CheckIfRelevant(list_sorted_sd, 1.96, 0.5855700719712053)
-
-print("test for kurt")
-CheckIfRelevant(list_sorted_kurtosis, 1.96, -1.0533222257919426)
-
-print("test for skew")
-CheckIfRelevant(list_sorted_skweness, 1.96, 0.00011500419053986119)
-
-print("test for var")
-CheckIfRelevant(list_sorted_variance, 1.96, 0.3428923091883625)
-
-
-#średnich_5000 = []
-#for _ in range(int(5000/8)):
-#    time.sleep(1)
-#    nowy_obj = Object(15,1103515245, 12345, 2**31, abs(int(time.perf_counter()) * 10000000000000000000))
-#    nowy_obj.Simulate()
+#
+#object_15 = Object(15, 1103515245, 12345, 2**31, 2)
+#object_120 = Object(120, 1103515245, 12345, 2**31, 2)
+#
+#object_15.Simulate()
+#object_120.Simulate()
+#print("mean, sd")
+#print(object_15.CalculateMeanAndSD())
+#print(object_120.CalculateMeanAndSD())
+#print()
+#print("kurtozja")
+#print(object_15.CalculateKurtosis())
+#print(object_120.CalculateKurtosis())
+#print()
+#print("Median")
+#print(object_15.CalculateMedian())
+#print(object_120.CalculateMedian())
+#print()
+#print("skosnosc")
+#print(object_15.CalculateSkewness())
+#print(object_120.CalculateSkewness())
+#print()
+#print("mode")
+#print(object_15.CalculateMode())
+#print(object_120.CalculateMode())
+#print()
+#print("variance")
+#print(object_15.CalculateVariance())
+#print(object_120.CalculateVariance())
+#object_15.histogram_discreet()
+#object_120.histogram_discreet()
+#
+#
+#
+#object_15.CheckIfRelevant(2.144)
+#object_120.CheckIfRelevant(1.96)
+#
+#
+#def ShapiroWilk(amount_of_samples, amount_of_elemetns):
+#    list_sorted = []
+#    for _ in range(amount_of_samples):
+#        time.sleep(1)
+#        temp_obj = Object(amount_of_elemetns, 1103515245, 12345, 2**31, abs(int(time.perf_counter()) * 10000000000000000000))
+#        temp_obj.Simulate()
+#        mean, sd = temp_obj.CalculateMeanAndSD()
+#        list_sorted.append(mean)
+#    list_sorted = sorted(list_sorted)
+#    W, p = stats.shapiro(list_sorted)
+#    print(f"wartość testu shapiro: {W} z p-value: {p}")
+#    return W, p
+##ShapiroWilk(250,120)
+#
+#list_sorted_mean = []
+#list_sorted_sd = []
+#list_sorted_kurtosis = []
+#list_sorted_skweness = []
+#list_sorted_variance = []
+#
+#
+#list2_sorted_mean = []
+#list2_sorted_sd = []
+#list2_sorted_kurtosis = []
+#list2_sorted_skweness = []
+#list2_sorted_variance = []
+#def CreateMeanMean(amount_of_samples, amount_of_elemetns):
+#    for _ in range(amount_of_samples):
+#        time.sleep(1)
+#        object_lista2 = Object_lista2(amount_of_elemetns)
+#        object_lista2.Simulate()
+#        temp_obj = Object(amount_of_elemetns, 1103515245, 12345, 2**31, abs(int(time.perf_counter()) * 10000000000000000000))
+#        temp_obj.Simulate()
+#        
+#        mean, sd = temp_obj.CalculateMeanAndSD()
+#        kurtosis = temp_obj.CalculateKurtosis()
+#        skewness = temp_obj.CalculateSkewness()
+#        var = temp_obj.CalculateVariance()
+#        
+#        mean2, sd2 = object_lista2.CalculateMeanAndSD()
+#        kurtosis2 = object_lista2.CalculateKurtosis()
+#        skewness2 = object_lista2.CalculateSkewness()
+#        var2 = object_lista2.CalculateVariance()
+#        
+#        list2_sorted_kurtosis.append(kurtosis2)
+#        list2_sorted_skweness.append(skewness2)
+#        list2_sorted_variance.append(var2)
+#        list2_sorted_mean.append(mean2)
+#        list2_sorted_sd.append(sd2)
+#        
+#        list_sorted_kurtosis.append(kurtosis)
+#        list_sorted_skweness.append(skewness)
+#        list_sorted_variance.append(var)
+#        list_sorted_mean.append(mean)
+#        list_sorted_sd.append(sd)
 #    
-#    srednia, sd = nowy_obj.CalculateMeanAndSD()
-#    średnich_5000.append(srednia)
-#    print(srednia)
+#    list_sorted_mean.sort()
+#    list_sorted_sd.sort()
+#    list_sorted_kurtosis.sort()
+#    list_sorted_skweness.sort()
+#    list_sorted_variance.sort()
+#    
+#def CheckIfRelevant(lista1, lista2, critical_value, stat_from_list_2):
+#    mean1 = np.mean(lista1)
+#    sd1 = np.std(lista1, ddof=1)
+#    
+#    mean2 = np.mean(lista2)
+#    sd2 = np.std(lista2)
+#
+#    value = (mean1 - mean2) / np.sqrt((sd1 ** 2 / len(lista1)) + (sd2 ** 2 / len(lista2)))
+#    if (abs(value) > critical_value):
+#        print(f"for {len(lista1)} elements we are rejecting null hipo")
+#    else:
+#        print(f"for {len(lista1)} elements we are NOT rejecting null hip")
+#
+#CreateMeanMean(100, 120)
+#print()
+#print()
+#print()
+#print()
+#print()
+#print()
+#print("test for mean")
+#CheckIfRelevant(list_sorted_mean, list2_sorted_mean ,1.96, 0.06866020977708105)
+#
+#print("test for sd")
+#CheckIfRelevant(list_sorted_sd, list2_sorted_sd,1.96, 0.5855700719712053)
+#
+#print("test for kurt")
+#CheckIfRelevant(list_sorted_kurtosis, list2_sorted_kurtosis,1.96, -1.0533222257919426)
+#
+#print("test for skew")
+#CheckIfRelevant(list_sorted_skweness, list2_sorted_skweness, 1.96, 0.00011500419053986119)
+#
+#print("test for var")
+#CheckIfRelevant(list_sorted_variance,list2_sorted_variance, 1.96, 0.3428923091883625)
 #
 #
-#plt.hist(średnich_5000,bins= 1000)
-#plt.show()
-
-
+##średnich_5000 = []
+##for _ in range(int(5000/8)):
+##    time.sleep(1)
+##    nowy_obj = Object(15,1103515245, 12345, 2**31, abs(int(time.perf_counter()) * 10000000000000000000))
+##    nowy_obj.Simulate()
+##    
+##    srednia, sd = nowy_obj.CalculateMeanAndSD()
+##    średnich_5000.append(srednia)
+##    print(srednia)
+##
+##
+##plt.hist(średnich_5000,bins= 1000)
+##plt.show()
+#
+#
+#

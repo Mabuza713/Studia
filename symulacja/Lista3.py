@@ -164,79 +164,80 @@ class Object:
         plt.show()
         
     
-
-object_15 = Object(15)
-object_120 = Object(120)
-
-#res = []
-#x_ax = []
-#for i in range(10, 12000):
-#    obj = Object(i)
-#    obj.Simulate()
-#    obj_kurt = obj.CalculateKurtosis()
-#    res.append(obj_kurt)
-#    x_ax.append(i)
-#plt.plot(x_ax, res)
+#
+#object_15 = Object(20)
+#object_120 = Object(1000)
+#
+##res = []
+##x_ax = []
+##for i in range(10, 12000):
+##    obj = Object(i)
+##    obj.Simulate()
+##    obj_kurt = obj.CalculateKurtosis()
+##    res.append(obj_kurt)
+##    x_ax.append(i)
+##plt.plot(x_ax, res)
+##plt.show()
+#
+#
+#
+#object_15.Simulate()
+#object_120.Simulate()
+#
+#    
+#object_15.ShapiroWilk()
+#object_120.ShapiroWilk()
+#
+#object_15.qq_plot()
+#object_120.qq_plot()
+#
+#object_15.boxplot()
+#object_120.boxplot()
+#
+#
+#
+#print("mean, sd")
+#print(object_15.CalculateMeanAndSD())
+#print(object_120.CalculateMeanAndSD())
+#print()
+#print("kurtozja")
+#print(object_15.CalculateKurtosis())
+#print(object_120.CalculateKurtosis())
+#print()
+#print("Median")
+#print(object_15.CalculateMedian())
+#print(object_120.CalculateMedian())
+#print()
+#print("skosnosc")
+#print(object_15.CalculateSkewness())
+#print(object_120.CalculateSkewness())
+#print()
+#print("mode")
+#print(object_15.CalculateMode())
+#print(object_120.CalculateMode())
+#print()
+#print("variance")
+#print(object_15.CalculateVariance())
+#print(object_120.CalculateVariance())
+#object_15.histogram_discreet()
+#object_120.histogram_discreet()
+#
+#średnich_5000 = []
+#for _ in range(int(50000/2)):
+#    nowy_obj = Object(1000)
+#    nowy_obj.Simulate()
+#    
+#    srednia, sd = nowy_obj.CalculateMeanAndSD()
+#    średnich_5000.append(srednia)
+#
+#
+#
+#plt.hist(średnich_5000,bins= 1000)
 #plt.show()
-
-
-
-object_15.Simulate()
-object_120.Simulate()
-
-    
-object_15.ShapiroWilk()
-object_120.ShapiroWilk()
-
-object_15.qq_plot()
-object_120.qq_plot()
-
-object_15.boxplot()
-object_120.boxplot()
-
-
-
-print("mean, sd")
-print(object_15.CalculateMeanAndSD())
-print(object_120.CalculateMeanAndSD())
-print()
-print("kurtozja")
-print(object_15.CalculateKurtosis())
-print(object_120.CalculateKurtosis())
-print()
-print("Median")
-print(object_15.CalculateMedian())
-print(object_120.CalculateMedian())
-print()
-print("skosnosc")
-print(object_15.CalculateSkewness())
-print(object_120.CalculateSkewness())
-print()
-print("mode")
-print(object_15.CalculateMode())
-print(object_120.CalculateMode())
-print()
-print("variance")
-print(object_15.CalculateVariance())
-print(object_120.CalculateVariance())
-object_15.histogram_discreet()
-object_120.histogram_discreet()
-
-średnich_5000 = []
-for _ in range(int(50000/2)):
-    nowy_obj = Object(1000)
-    nowy_obj.Simulate()
-    
-    srednia, sd = nowy_obj.CalculateMeanAndSD()
-    średnich_5000.append(srednia)
-
-
-
-plt.hist(średnich_5000,bins= 1000)
-plt.show()
-
-
-object_15.CheckIfRelevant(2.144)
-object_120.CheckIfRelevant(1.96)
-
-
+#
+#
+#object_15.CheckIfRelevant(2.144)
+#object_120.CheckIfRelevant(1.96)
+#
+#
+#
