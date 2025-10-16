@@ -1,0 +1,22 @@
+{
+  "GraphicVersion": 30,
+  "VisualElementID": 813,
+  "GObjectId": 813,
+  "HelpId": "",
+  "VisualElementName": "AnalogMeter180Degree",
+  "IsProtected": false,
+  "ContextObject": "",
+  "TimeStamp": 134040568820930878,
+  "VisualElementType": "Symbol",
+  "Errors": null,
+  "Warnings": null,
+  "AttributeReferences": null,
+  "RuntimeDependencies": null,
+  "ClientControlDependencies": null,
+  "Description": "",
+  "VisualElementReferencesStatus": [],
+  "GraphicChangeType": 1,
+  "ContentType": "",
+  "InternalName": null,
+  "ExternalName": null
+}

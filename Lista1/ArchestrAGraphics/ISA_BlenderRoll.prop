@@ -1,0 +1,22 @@
+{
+  "GraphicVersion": 7,
+  "VisualElementID": 1007,
+  "GObjectId": 1007,
+  "HelpId": "",
+  "VisualElementName": "ISA_BlenderRoll",
+  "IsProtected": false,
+  "ContextObject": "",
+  "TimeStamp": 134040568989101212,
+  "VisualElementType": "Symbol",
+  "Errors": null,
+  "Warnings": null,
+  "AttributeReferences": null,
+  "RuntimeDependencies": null,
+  "ClientControlDependencies": null,
+  "Description": "",
+  "VisualElementReferencesStatus": [],
+  "GraphicChangeType": 1,
+  "ContentType": "",
+  "InternalName": null,
+  "ExternalName": null
+}

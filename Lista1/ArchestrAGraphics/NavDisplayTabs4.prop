@@ -1,0 +1,24 @@
+{
+  "GraphicVersion": 23,
+  "VisualElementID": 951,
+  "GObjectId": 951,
+  "HelpId": "",
+  "VisualElementName": "NavDisplayTabs4",
+  "IsProtected": false,
+  "ContextObject": "",
+  "TimeStamp": 134040568938219747,
+  "VisualElementType": "Symbol",
+  "Errors": null,
+  "Warnings": null,
+  "AttributeReferences": null,
+  "RuntimeDependencies": null,
+  "ClientControlDependencies": null,
+  "Description": "",
+  "VisualElementReferencesStatus": [
+    1
+  ],
+  "GraphicChangeType": 1,
+  "ContentType": "",
+  "InternalName": null,
+  "ExternalName": null
+}

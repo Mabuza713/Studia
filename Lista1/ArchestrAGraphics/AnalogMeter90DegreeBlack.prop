@@ -1,0 +1,22 @@
+{
+  "GraphicVersion": 30,
+  "VisualElementID": 809,
+  "GObjectId": 809,
+  "HelpId": "",
+  "VisualElementName": "AnalogMeter90DegreeBlack",
+  "IsProtected": false,
+  "ContextObject": "",
+  "TimeStamp": 134040568817560114,
+  "VisualElementType": "Symbol",
+  "Errors": null,
+  "Warnings": null,
+  "AttributeReferences": null,
+  "RuntimeDependencies": null,
+  "ClientControlDependencies": null,
+  "Description": "",
+  "VisualElementReferencesStatus": [],
+  "GraphicChangeType": 1,
+  "ContentType": "",
+  "InternalName": null,
+  "ExternalName": null
+}

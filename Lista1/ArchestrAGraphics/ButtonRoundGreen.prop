@@ -1,0 +1,22 @@
+{
+  "GraphicVersion": 9,
+  "VisualElementID": 899,
+  "GObjectId": 899,
+  "HelpId": "",
+  "VisualElementName": "ButtonRoundGreen",
+  "IsProtected": false,
+  "ContextObject": "",
+  "TimeStamp": 134040568896930450,
+  "VisualElementType": "Symbol",
+  "Errors": null,
+  "Warnings": null,
+  "AttributeReferences": null,
+  "RuntimeDependencies": null,
+  "ClientControlDependencies": null,
+  "Description": "",
+  "VisualElementReferencesStatus": [],
+  "GraphicChangeType": 1,
+  "ContentType": "",
+  "InternalName": null,
+  "ExternalName": null
+}

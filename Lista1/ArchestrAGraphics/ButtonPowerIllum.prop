@@ -1,0 +1,22 @@
+{
+  "GraphicVersion": 7,
+  "VisualElementID": 881,
+  "GObjectId": 881,
+  "HelpId": "",
+  "VisualElementName": "ButtonPowerIllum",
+  "IsProtected": false,
+  "ContextObject": "",
+  "TimeStamp": 134040568883227356,
+  "VisualElementType": "Symbol",
+  "Errors": null,
+  "Warnings": null,
+  "AttributeReferences": null,
+  "RuntimeDependencies": null,
+  "ClientControlDependencies": null,
+  "Description": "",
+  "VisualElementReferencesStatus": [],
+  "GraphicChangeType": 1,
+  "ContentType": "",
+  "InternalName": null,
+  "ExternalName": null
+}
